@@ -1,2 +1,2 @@
-# pupetron
+# Pupetron
 Digital puppetry for Blender
