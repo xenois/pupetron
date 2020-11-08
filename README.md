@@ -1,4 +1,4 @@
-# Pupetron
+# Pupetron 
 Digital puppetry for Blender
 
 **( Work in progress )**
@@ -22,3 +22,9 @@ Packages should be installed in Blender's python
 ## Running tests
 
 1. `npm run test` . * *For running realtime tests, Blender needs to be open ,the addon installed and activated. Also one object in the scene has to be selected.*
+
+## License
+
+Copyright (c) 2020 Ivi Hasanaj
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
