@@ -1,0 +1,59 @@
+{
+  "name": "pupetron",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/main.ts",
+  "scripts": {
+    "build-app": "npm run --prefix app/angular-pupetron build",
+    "build-electron": "tsc --p tsconfig.json",
+    "build": "del-cli --force dist && npm run build-app && npm run build-electron",
+    "lint": "tslint --project tsconfig.json && cd app/angular-pupetron && ng lint",
+    "test": "mocha --exit -r ts-node/register tests/**/blender-realtime.test.ts",
+    "coverage": "nyc -r lcov -e .ts npm run test",
+    "start": "electron dist/main.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint",
+      "pre-push": "npm test"
+    }
+  },
+  "nyc": {
+    "exclude": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:xenois/pupetron.git"
+  },
+  "author": "Ivi Hasanaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com:xenois/issues"
+  },
+  "homepage": "https://github.com:xenois/pupetron#readme",
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.34",
+    "rxjs": "^6.4.0",
+    "socket.io-client": "^2.3.1"
+  },
+  "devDependencies": {
+    "@types/socket.io": "^2.1.11",
+    "@types/node": "^8.10.62",
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.0.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "husky": "^4.3.0",
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-standard": "^9.0.0",
+    "typescript": "^4.0.3",
+    "typescript-tslint-plugin": "^0.5.5",
+    "electron": "^9.2.1",
+    "electron-packager": "^15.0.0",
+    "del-cli": "^3.0.1",
+    "socket.io": "^2.3.0"
+  }
+}
