@@ -8,7 +8,7 @@
     "build-electron": "tsc --p tsconfig.json",
     "build": "del-cli --force dist && npm run build-app && npm run build-electron",
     "lint": "tslint --project tsconfig.json && cd app/angular-pupetron && ng lint",
-    "test": "mocha --exit -r ts-node/register tests/**/blender-realtime.test.ts",
+    "test": "mocha --exit -r ts-node/register tests/**/*.test.ts",
     "coverage": "nyc -r lcov -e .ts npm run test",
     "start": "electron dist/main.js"
   },
