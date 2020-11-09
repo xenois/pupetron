@@ -12,7 +12,8 @@
     "test": "mocha --exit -r ts-node/register tests/**/*.test.ts",
     "coverage": "nyc -r lcov -e .ts npm run test",
     "start": "electron dist/main.js",
-    "package-electron": "del-cli --force releases && node electron/packager.js"
+    "package-electron": "del-cli --force releases && node electron/packager.js",
+    "serve": "cd app/angular-pupetron && ng serve"
   },
   "husky": {
     "hooks": {
@@ -35,7 +36,7 @@
   "homepage": "https://github.com:xenois/pupetron#readme",
   "dependencies": {
     "@types/socket.io-client": "^1.4.34",
-    "rxjs": "^6.4.0",
+    "rxjs": "^6.6.3",
     "socket.io-client": "^2.3.1"
   },
   "devDependencies": {

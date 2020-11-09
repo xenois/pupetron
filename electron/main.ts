@@ -7,7 +7,7 @@ import { BlenderWebsocketClient } from './socket/blender-websocket-client'
 const blenderWebsocketClient = new BlenderWebsocketClient()
 
 blenderWebsocketClient.inData.subscribe(data => {
-  win?.webContents.send('onSocketDataBus', data.data)
+  win?.webContents.send('onSocketDataBus', data)
 })
 
 ipcMain.on('onSocketDataBus', (event, packet) => {
@@ -25,7 +25,7 @@ ipcMain.on('onSocketDataBus', (event, packet) => {
 let win: BrowserWindow | null
 function createWindow () {
   win = new BrowserWindow({
-    width: 800, height: 600,
+    width: 1024, height: 800,
     webPreferences: {
       nodeIntegration: true
     }
@@ -46,7 +46,7 @@ function createWindow () {
     })
   ).then().catch()
 
-  win.setAlwaysOnTop(true)
+  // win.setAlwaysOnTop(true)
 
   win.webContents.openDevTools()
 
