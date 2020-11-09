@@ -3,8 +3,8 @@ var packager = require('electron-packager');
 var options = {
     'platform': process.platform,
     'dir': '.',
-    'ignore': '^/(?!node_modules|dist|package.json)',
-    'name': 'Cment',
+    'ignore': '^/(?!node_modules|dist|package.json|LICENSE)',
+    'name': 'Pupetron',
     'out': './releases',
     'overwrite': true,
     'prune': true,

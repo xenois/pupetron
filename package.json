@@ -2,15 +2,17 @@
   "name": "pupetron",
   "version": "1.0.0",
   "description": "",
-  "main": "app/main.ts",
+  "main": "dist/main.js",
   "scripts": {
+    "postinstall": "cd app/angular-pupetron && npm i",
     "build-app": "npm run --prefix app/angular-pupetron build",
     "build-electron": "tsc --p tsconfig.json",
     "build": "del-cli --force dist && npm run build-app && npm run build-electron",
     "lint": "tslint --project tsconfig.json && cd app/angular-pupetron && ng lint",
     "test": "mocha --exit -r ts-node/register tests/**/*.test.ts",
     "coverage": "nyc -r lcov -e .ts npm run test",
-    "start": "electron dist/main.js"
+    "start": "electron dist/main.js",
+    "package-electron": "del-cli --force releases && node electron/packager.js"
   },
   "husky": {
     "hooks": {

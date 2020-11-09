@@ -5,10 +5,11 @@ Digital puppetry for Blender
 
 ## Blender setup
 
-Packages should be installed in Blender's python
+Packages should be installed in Blender's python 
+`cd blender_file_location/python/bin`
 
-1. Install [Socket.IO Server](https://python-socketio.readthedocs.io/en/latest/server.html) : `pip install python-socketio` 
-2. Install [Eventlet](http://eventlet.net/) : `pip install eventlet` 
+1. Install [Socket.IO Server](https://python-socketio.readthedocs.io/en/latest/server.html) : `python -m pip install python-socketio` 
+2. Install [Eventlet](http://eventlet.net/) : `python -m pip install eventlet` 
 3. Download `blender-files/pupetron-blender-addon.py`
 4. In Blender, go to `File` > `User Preferences...` > `Add-ons` > `Install from file..` and select the file
 5. Enable the add-on by ticking the corresponding box
