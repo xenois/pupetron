@@ -21,6 +21,9 @@ import { ConnectionComponent } from './dashboard/connection/connection.component
 import { ConfigurationComponent } from './dashboard/configuration/configuration.component';
 import { WebcamComponent } from './dashboard/webcam/webcam.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTableModule} from '@angular/material/table';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { ColorPickerModule } from 'ngx-color-picker';
 @NgModule({
   declarations: [PagesComponent, ConnectionComponent, ConfigurationComponent, WebcamComponent, DashboardComponent],
   imports: [
@@ -40,7 +43,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatExpansionModule,
     MatTabsModule,
     MatSelectModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatCheckboxModule,
+    ColorPickerModule
   ]
 })
 export class PagesModule { }
