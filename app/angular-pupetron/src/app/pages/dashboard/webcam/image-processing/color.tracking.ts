@@ -1,7 +1,7 @@
 
 let cv = null;
 try {
-  cv = (window as any).require('../opencv/opencv');
+  cv = (window as any).require('opencv');
 } catch (err) {
   console.log(err);
 }
@@ -23,8 +23,8 @@ export class ColorTracking {
     const anchor = new cv.Point(-1, -1);
     cv.dilate(this.dst, this.dst, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
     M.delete();
-    cv.rectangle(this.dst, new cv.Point(50, 50), new cv.Point(70, 70), new cv.Scalar(0, 0, 255, 255), 1);
-
+    cv.rectangle(this.dst, new cv.Point(50, 50), new cv.Point(100, 100), new cv.Scalar(0, 0, 255, 255), 1);
+    cv.flip(this.dst, this.dst, +1);
     cv.imshow(canvas, this.dst);
   }
 

@@ -15,7 +15,6 @@ export class WebcamComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(private zone: NgZone) { }
   @ViewChild('video', { static: false }) video: ElementRef<HTMLVideoElement>;
   @ViewChild('canvas', { static: false }) canvas: ElementRef<HTMLCanvasElement>;
-  @ViewChild('canvas1', { static: false }) canvas1: ElementRef<HTMLCanvasElement>;
 
   private colorTracking: ColorTracking;
   ngOnInit(): void {
@@ -27,11 +26,14 @@ export class WebcamComponent implements OnInit, AfterViewInit, OnDestroy {
         this.video.nativeElement.srcObject = stream;
         this.video.nativeElement.play();
 
-        this.colorTracking = new ColorTracking(this.video.nativeElement);
+        if (ipcRenderer) {
+          this.colorTracking = new ColorTracking(this.video.nativeElement);
+        }
       });
     }
-
-    setInterval(this.grayImage.bind(this), 40);
+    if (ipcRenderer) {
+      setInterval(this.grayImage.bind(this), 40);
+    }
   }
   grayImage() {
     if (!this.colorTracking) { return; }

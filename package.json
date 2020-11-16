@@ -7,13 +7,14 @@
     "postinstall": "cd app/angular-pupetron && npm i",
     "build-app": "npm run --prefix app/angular-pupetron build",
     "build-electron": "tsc --p tsconfig.json",
-    "build": "del-cli --force dist && npm run build-app && npm run build-electron && copyfiles -f electron/opencv/opencv.js dist/opencv/",
+    "build": "del-cli --force dist && npm run build-app && npm run build-electron",
     "lint": "tslint --project tsconfig.json && cd app/angular-pupetron && ng lint",
     "test": "mocha --exit -r ts-node/register tests/**/*.test.ts",
     "coverage": "nyc -r lcov -e .ts npm run test",
-    "start": "electron dist/main.js",
-    "package-electron": "del-cli --force releases && node electron/packager.js",
-    "serve": "cd app/angular-pupetron && ng serve"
+    "serve": "cd app/angular-pupetron && ng serve",
+    "electron": "wait-on http://localhost:4200 && electron dist/main.js",
+    "start": "concurrently -k \"npm run serve\" \"npm run electron\"",
+    "package-electron": "del-cli --force releases && node electron/packager.js"
   },
   "husky": {
     "hooks": {
@@ -36,28 +37,31 @@
   "homepage": "https://github.com:xenois/pupetron#readme",
   "dependencies": {
     "@types/socket.io-client": "^1.4.34",
+    "opencv": "file:electron/opencv/opencv-1.0.0.tgz",
     "rxjs": "^6.6.3",
     "socket.io-client": "^2.3.1"
   },
   "devDependencies": {
-    "@types/socket.io": "^2.1.11",
-    "@types/node": "^8.10.62",
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.0.3",
+    "@types/node": "^8.10.62",
+    "@types/socket.io": "^2.1.11",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "concurrently": "^5.3.0",
+    "copyfiles": "^2.4.0",
+    "del-cli": "^3.0.1",
+    "electron": "^9.2.1",
+    "electron-packager": "^15.0.0",
     "husky": "^4.3.0",
     "mocha": "^8.2.0",
     "nyc": "^15.1.0",
+    "socket.io": "^2.3.0",
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
     "tslint-config-standard": "^9.0.0",
     "typescript": "^4.0.3",
     "typescript-tslint-plugin": "^0.5.5",
-    "electron": "^9.2.1",
-    "electron-packager": "^15.0.0",
-    "del-cli": "^3.0.1",
-    "socket.io": "^2.3.0",
-    "copyfiles": "^2.4.0"
+    "wait-on": "^5.2.0"
   }
 }

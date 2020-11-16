@@ -2,6 +2,7 @@ import { app, BrowserWindow, ipcMain, MenuItem, protocol } from 'electron'
 import * as path from 'path'
 import * as url from 'url'
 import * as fs from 'fs'
+
 import { BlenderWebsocketClient } from './socket/blender-websocket-client'
 
 protocol.registerSchemesAsPrivileged([
@@ -11,7 +12,7 @@ protocol.registerSchemesAsPrivileged([
 const blenderWebsocketClient = new BlenderWebsocketClient()
 
 blenderWebsocketClient.inData.subscribe(data => {
-  win?.webContents.send('onSocketDataBus', data)
+  win?.webContents.send('onSocketDataBuss', data)
 })
 
 ipcMain.on('onSocketDataBus', (event, packet) => {
@@ -38,17 +39,16 @@ function createWindow () {
   let pathname = path.join(app.getAppPath(), `dist/angular-pupetron/index.html`)
   try {
     fs.statSync(pathname)
+    win.loadURL(
+      url.format({
+        pathname: pathname,
+        protocol: 'file:',
+        slashes: true
+      })
+    ).then().catch()
   } catch (err) {
-    pathname = path.join(app.getAppPath(), `angular-pupetron/index.html`)
+    win.loadURL('http://localhost:4200').then().catch()
   }
-
-  win.loadURL(
-    url.format({
-      pathname: pathname,
-      protocol: 'file:',
-      slashes: true
-    })
-  ).then().catch()
 
   // win.setAlwaysOnTop(true)
 
