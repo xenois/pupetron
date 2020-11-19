@@ -34,7 +34,7 @@ const BLENDER_DATA: BlenderObject[] = [
     ]),
   ],
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent{
   displayedColumns: string[] = ['select', 'name', 'color'];
   dataSource = new MatTableDataSource<BlenderObject>(BLENDER_DATA);
   selection = new SelectionModel<BlenderObject>(true, []);
@@ -72,9 +72,6 @@ export class ConfigurationComponent implements OnInit {
     });
     this.dataSource.data = data;
   }
-
-  ngOnInit(): void {
-  }
   onGetSelections() {
     this.electronService.socketDataBus.next({ direction: 0, data: { type: 'data', data: { event: 'getSelected' } } });
   }
@@ -103,4 +100,7 @@ export class ConfigurationComponent implements OnInit {
     console.log(color);
     console.log(row);
   }
+  onDrop(event){
+    console.log(event);
+    }
 }

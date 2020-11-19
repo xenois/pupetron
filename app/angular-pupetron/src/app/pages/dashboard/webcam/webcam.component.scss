@@ -1,3 +1,4 @@
+@import '../../../../theme.scss';
 video {
   object-fit: fill;
   /*Mirror code starts*/
@@ -5,4 +6,18 @@ video {
   -webkit-transform: rotateY(180deg); /* Safari and Chrome */
   -moz-transform: rotateY(180deg); /* Firefox */
   /*Mirror code ends*/
+}
+.roundBorder{
+  border: 1px solid $my-gray-color;
+  border-radius: 5px;
+}
+.roundBorderColorless{
+  border-radius: 5px;
+}
+.debugBorder{
+  // border: 1px solid $my-gray-color;
+}
+::ng-deep .mat-icon{
+  height:25px !important;
+  font-size:15px !important;
 }

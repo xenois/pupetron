@@ -1,13 +1,50 @@
- <mat-card style="height:calc(100% - 60px);margin: 10px 0px 10px 10px">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Webcamera preview</mat-card-title>
-    </mat-card-header>
-    <mat-card-content >
-      <canvas width="400" height="240" #canvas></canvas>
-      <video autoplay="true" width="400" height="240" #video></video>
-    </mat-card-content>
-    <mat-card-actions>
-    </mat-card-actions>
-  </mat-card>
+<mat-card fxFlex="100" class="debugBorder">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Webcamera preview</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="debugBorder" style="height:calc(100% - 39px);">
 
+    <div fxFlex="85" fxLayout="column" class="debugBorder">
+      <div fxLayout="row" fxLayoutAlign="space-evenly center" style="padding-bottom: 4px;">
+
+        <button mat-button color="{{videoStarted?'primary':'accent'}}" (click)="onStartVideo()"
+          [disabled]="false">Webcam</button>
+
+        <mat-button-toggle-group *ngIf="videoStarted" appearance="legacy" #group="matButtonToggleGroup"
+          (change)="onChangeProcess(group.value)">
+          <mat-button-toggle [checked]="!sampling" value="tracker">Tracker</mat-button-toggle>
+          <mat-button-toggle [checked]="sampling" value="sampler">Sampler</mat-button-toggle>
+        </mat-button-toggle-group>
+
+      </div>
+      <canvas fxFlex="100" width="500" height="360" #canvas class="roundBorder"></canvas>
+      <div fxFlex="0 0 40px" fxLayout="row" fxLayoutAlign="space-evenly center" class="debugBorder">
+        <mat-checkbox *ngIf="videoStarted&&!sampling" color="primary" [checked]="showTrackingPoint" (change)="onTrackPointsChecked($event)">
+          Points
+        </mat-checkbox>
+        <mat-checkbox *ngIf="videoStarted&&!sampling" color="primary" [checked]="showTrackingMask" (change)="onTrackMaskChecked($event)">
+          Mask
+        </mat-checkbox>
+        <button *ngIf="videoStarted&&sampling" mat-button color="primary" (click)="onPickSample()">Pick</button>
+      </div>
+
+      <video hidden fxFlex="0" width="500" height="360" #video></video>
+    </div>
+
+    <div fxFlex="15" fxLayout="column" style="overflow: auto;margin-left: 20px;" fxLayoutAlign="start stretch">
+
+      <mat-label style="margin:7px auto 7px auto;">Samples</mat-label>
+      <div *ngFor="let sample of samples; let i = index" style="margin: 5px 2px 0 2px;" >
+        <span style="margin:auto" fxFlex="15">{{i}}</span>
+        <canvas fxFlex="65" matBadge="1" matBadgeOverlap="false" height="50" width="50" class="roundBorderColorless"
+        appOnCreate (create)='drawSampleToCanvas($event,sample)'>1</canvas>
+        <button fxFlex="20" mat-icon-button color="accent" (click)="onDeleteSample(i)">
+          <mat-icon fxFlex="30" color="accent">highlight_off</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+  </mat-card-actions>
+</mat-card>

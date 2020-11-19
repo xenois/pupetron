@@ -53,7 +53,7 @@ function createWindow () {
   // win.setAlwaysOnTop(true)
 
   win.webContents.openDevTools()
-
+  win.removeMenu()
   win.on('closed', () => {
     win = null
   })

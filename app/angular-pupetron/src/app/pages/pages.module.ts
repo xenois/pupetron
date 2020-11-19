@@ -24,8 +24,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTableModule} from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { OnCreateDirective } from '../directives/oncreate.directive';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 @NgModule({
-  declarations: [PagesComponent, ConnectionComponent, ConfigurationComponent, WebcamComponent, DashboardComponent],
+  declarations: [PagesComponent, ConnectionComponent, ConfigurationComponent, WebcamComponent, DashboardComponent,
+    OnCreateDirective],
   imports: [
     CommonModule,
     PagesRoutingModule,
@@ -46,7 +51,10 @@ import { ColorPickerModule } from 'ngx-color-picker';
     MatMenuModule,
     MatTableModule,
     MatCheckboxModule,
-    ColorPickerModule
+    ColorPickerModule,
+    FlexLayoutModule,
+    DragDropModule,
+    MatButtonToggleModule
   ]
 })
 export class PagesModule { }

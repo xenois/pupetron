@@ -1,11 +1,9 @@
-<mat-grid-list cols="5" rowHeight="24.8%">
-    <mat-grid-tile [colspan]="3" [rowspan]="4">
-        <app-webcam style="height: 100%;width: 100%;"></app-webcam>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="1">
-        <app-connection style="height: 100%;width: 100%;"></app-connection>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan]="2" [rowspan]="3">
-        <app-configuration style="height: 100%;width: 100%;"></app-configuration>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div fxFill fxLayout="row" fxLayoutGap="10px" style="padding: 10px">
+    <div fxLayout="column" fxFlex="1 0 650px">
+        <app-webcam fxFlex="1 0 512px"></app-webcam>
+    </div>
+    <div fxLayout="column" fxLayoutGap="10px" fxFlex="1 0 285px">
+        <app-connection fxFlex="0 0 130px"></app-connection>
+        <app-configuration fxFlex="1 0 372px"></app-configuration>
+    </div>
+</div>
